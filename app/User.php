@@ -40,6 +40,11 @@ class User extends Authenticatable
     ];
 
 
+    public function item()
+    {
+        return $this->hasMany('App\Item', 'user_id', 'id');
+    }
+
     public function comment()
     {
         // HasManyの逆

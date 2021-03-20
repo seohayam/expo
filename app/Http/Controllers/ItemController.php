@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Item;
+use App\Item as Item;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -14,7 +14,10 @@ class ItemController extends Controller
      */
     public function index()
     {
-        //
+        
+        $items = Item::with('user')->get();
+
+        return view('items.index',['items'=> $items]);
     }
 
     /**
