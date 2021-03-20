@@ -19,6 +19,7 @@ class Item extends Model
     public function user()
     {
         // HasManyの逆
+        // ＊\飲む気に注意
         return $this->belongsTo('App\User');
     }
 

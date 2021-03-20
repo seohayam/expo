@@ -11,10 +11,18 @@
 |
 */
 
+
+use App\Http\Controllers\ItemController;
+use Illuminate\Support\Facades\Auth;
+// 注意 Facades を使う事
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+// Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('/items', 'ItemController');
+
+Auth::routes();
