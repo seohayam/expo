@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ItemRequest;
 use App\Item as Item;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,7 @@ class ItemController extends Controller
      */
     public function create()
     {
-        //
+        return view('items.create');
     }
 
     /**
@@ -36,9 +37,10 @@ class ItemController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ItemRequest $request)
     {
-        //
+        dd($request);
+        // データベスに情報をインサート 2021 03 21
     }
 
     /**
@@ -48,9 +50,7 @@ class ItemController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Item $item)
-    {
-        
-
+    {        
         return view('items.show',['item'=>$item]);
     }
 
@@ -62,7 +62,7 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        //
+        
     }
 
     /**
