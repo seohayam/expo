@@ -5,7 +5,7 @@
 
 @if(count($errors)>0)
 
-    @error('titile')
+    @error('title')
         <p>{{$message}}</p>
     @enderror
 
@@ -21,7 +21,7 @@
         <p>{{$message}}</p>
     @enderror
 
-    @error('descripion')
+    @error('description')
         <p>{{$message}}</p>
     @enderror
 
@@ -29,11 +29,12 @@
 
 <form method="POST" action="{{route('items.store')}}" enctype="multipart/form-data">
     @csrf
-    <input name="titile" type="text" placeholder="title" value="{{ old('title') }}">
+    <input name="title" type="text" placeholder="title" value="{{ old('title') }}">
     <input name="value" type="number" placeholder="value" value="{{ old('value') }}">
     <input name="item_url" type="text" placeholder="url" value="{{ old('item_url') }}">
-    <input name="image"  type="file" id="">
-    <textarea name="descripion" id="" cols="30" rows="10" placeholder="description" value="{{old('description')}}"></textarea>
+
+    <textarea name="description" id="" cols="30" rows="10" placeholder="description" value="{{old('description')}}"></textarea>
+
     <input type="submit" name="" id="" value="投稿">
 </form>
     

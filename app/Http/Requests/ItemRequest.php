@@ -27,8 +27,9 @@ class ItemRequest extends FormRequest
             'title'     => 'required',
             'value'     => 'required|numeric',
             'item_url'  => 'required',
-            'image'     => 'required|file|image',
-            'descripion'=> 'required'
+            // 'image'     => 'required|file|image',
+            'description'=> 'required'
+            
         ];
     }
 
@@ -38,9 +39,8 @@ class ItemRequest extends FormRequest
             'title.required'        => 'タイトルを入れて！',
             'value.required'        => '数値を入れて！',
             'item_url.required'     => 'URLを入れて！',
-            'image.required'        => '画像を入れて！',
-            'descripion.required'   => '説明を入れて１',
-
+            // 'image.required'        => '画像を入れて！',
+            'description.required'   => '説明を入れて１',
         ];
     }
 }

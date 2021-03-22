@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ItemRequest;
 use App\Item as Item;
+use App\Store;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
 {
@@ -38,9 +40,26 @@ class ItemController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(ItemRequest $request)
-    {
-        dd($request);
-        // データベスに情報をインサート 2021 03 21
+    {           
+        $item = new Item();
+        $user_id = Auth::id();
+    
+        $item->title        = $request->title;
+        $item->description  = $request->description;
+        $item->value        = $request->value;        
+        $item->item_url     = $request->item_url;
+        $item->user_id      = $user_id;
+        // $item->image = スッキップ
+        
+        $item->save();                
+
+        return redirect()->route('items.show',$item->id);
+
+
+        
+
+
+
     }
 
     /**
