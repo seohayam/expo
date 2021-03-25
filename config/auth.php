@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'user',
         'passwords' => 'users',
     ],
 
@@ -46,6 +46,16 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+        'user' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+        'store_owner' => [
+            'driver' => 'session',
+            'provider' => 'store_owners'
+        ]
+        // driver=名前
+        // provider=下にあるやつ（DB関連）
     ],
 
     /*
@@ -71,10 +81,11 @@ return [
             'model' => App\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'store_owners' => [
+            'driver' => 'eloquent',
+            'model' => App\StoreOwner::class,
+        ],
+        
     ],
 
     /*
@@ -95,6 +106,12 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'store_owners' => [
+            'provider' => 'store_owners',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
