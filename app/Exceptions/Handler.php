@@ -5,6 +5,8 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Auth\AuthenticationException;
+// use Illuminate\Routing\Route;
+use Route;
 
 class Handler extends ExceptionHandler
 {
@@ -63,19 +65,28 @@ class Handler extends ExceptionHandler
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response
      */
 
-     public function unauthenticated($request, AuthenticationException $exception){
+     public function unauthenticated($request, AuthenticationException $exception){   
+         
+        // dd($request);
+        
 
         // Jsonで返す
-        if($request->expectsJson()){
-            return response()->json(['messgae' => $exception->getMessage()],401);
-        }
+        // if($request->expectsJson()){
+        //     return response()->json(['messgae' => $exception->getMessage()],401);
+        // }
         
-        // owner_sotreをひっかける
-        if($request->is('store_owner') || $request->is('store_owner/*') ) {
-            return redirect()->guest('store_owner/login');
-        }
+        // // owner_sotreをひっかける
+        // if(Route::is('stores.*')) {
+        //     return redirect()->guest(route('store_owner.login'));
+        // }
 
-        return redirect()->guest($exception->redirectTo() ?? route('login'));
+        // return redirect()->guest($exception->redirectTo() ?? route('login'));
+
+        // dd(Route::is('stores.*'));
+
+        return $request->expectsJson()
+                ? response()->json(['message' => $exception->getMessage()], 401)
+                : (Route::is('stores.*') ? redirect()->guest(route('store_owner.login')) : redirect()->guest(route('login')));
 
     }
 
