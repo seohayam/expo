@@ -136,7 +136,7 @@ $authConf = [
 
 $uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
 
-if(strstr($uri, '/store_owner/') !==false || $uri === '/store_ownre_login')
+if(strstr($uri, '/store_owners/') !==false || $uri === '/store_owners/login')
 {
     $authConf['defaults'] = [
         'guard' => 'store_owner',

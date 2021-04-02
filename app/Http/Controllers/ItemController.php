@@ -8,14 +8,14 @@ use App\Store;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-// use 
+use App\User;
 
 class ItemController extends Controller
 {
 
     public function __construct(){
         
-        $this->middleware('auth')->except(['index', 'show']);
+        $this->middleware('auth');
 
     }
 
@@ -26,8 +26,8 @@ class ItemController extends Controller
      */
     public function index()
     {
-        
-        $items = Item::with('user')->get();
+                
+        $items = Item::where('user_id', Auth::id())->with('user')->get();
 
         return view('items.index',['items'=> $items]);
     }
@@ -39,6 +39,7 @@ class ItemController extends Controller
      */
     public function create()
     {
+
         return view('items.create');
     }
 
@@ -75,7 +76,7 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function show(Item $item)
+    public function show(User $user,Item $item)
     {        
         return view('items.show',['item'=>$item]);
     }

@@ -19,9 +19,10 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
 
-        $redirectTo = '/home';        
-        
-        if(Auth::guard($guard)->check()) {
+        $redirectTo = $guard . 's/home';        
+
+        if(Auth::guard($guard)->check()) {            
+
             return redirect($redirectTo);
         }        
 

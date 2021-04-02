@@ -20,36 +20,46 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 
 
-Route::get('/', 'WelcomeController@index');
+Route::get('/', 'WelcomeController@index')->name('welcome.index');
+Route::get('/show/items/{item}', 'WelcomeController@showItem')->name('welcome.showItem');
+Route::get('/show/stores/{store}', 'WelcomeController@showStore')->name('welcome.showStore');
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('/items', 'ItemController');
+// Auth::routes();
 
+Route::prefix('users')->group(function(){
+    Route::group(['middleware' => 'guest:user'], function(){
+        Route::get('/login', 'Auth\LoginController@showLoginForm');
+        Route::get('/register', 'Auth\RegisterController@showRegistrationForm');
+        Route::post('/login', 'Auth\LoginController@login')->name('login');
+        Route::post('/register', 'Auth\RegisterController@register')->name('register');
+    });
 
-Route::prefix('store_owner')->group(function(){
+    Route::post('/logout','Auth\LoginController@logout')->name('logout');
+    Route::resource('{user}/items', 'ItemController');
+    Route::get('/home', 'HomeController@userIndex')->name('user.home');
+});
+
+Route::prefix('store_owners')->group(function(){
     Route::group(['middleware' => 'guest:store_owner'], function () {
         Route::get('/login', 'Auth\LoginController@showStoreOwnerLoginForm');
         Route::get('/register', 'Auth\RegisterController@showStoreOwnerRegisterForm');
         Route::post('/login', 'Auth\LoginController@storeOwnerLogin')->name('store_owner.login');
-        Route::post('/register', 'Auth\RegisterController@createStoreOwner')->name('store_owner-register');        
+        Route::post('/register', 'Auth\RegisterController@createStoreOwner')->name('store_owner.register');        
     });    
 
-    Route::resource('/stores', 'StoreController');
+    Route::post('/logout','Auth\LoginController@logout')->name('logout');
+    Route::resource('{store_owner}/stores', 'StoreController');
+    Route::get('/home', 'HomeController@storeOwnerIndex')->name('store_owners.home');
 });
 
+// Route::get('/home', 'HomeController@index')->name('home');
+
+// Route::view('/store_owners', 'store_owner')->middleware('auth:store_owner')->name('store_owner-home');
 
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::view('/store_owner', 'store_owner')->middleware('auth:store_owner')->name('store_owner-home');
 
 
-Auth::routes();
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

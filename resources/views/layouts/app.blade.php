@@ -37,45 +37,24 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @if (!Auth::check() && (!isset($authgroup) || !Auth::guard($authgroup)->check()) )                                                                                                                                   
-                            <li class="nav-item">
-                                @isset($authgroup)
-                                <a class="nav-link" href="{{ url("login/$authgroup") }}">{{ __('Login') }}</a>
-                                @else
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                @endisset
-                            </li>
+                    <ul class="navbar-nav ml-auto">                                          
 
-                            @isset($authgroup)
-                                @if (Route::has("$authgroup-register"))
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route("$authgroup-register") }}">{{ __('Register') }}</a>
-                                    </li>
-                                @endif
-                            @else
-                                @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                                @endif
-                            @endisset
+                        @if (Auth::check() || Auth::guard('store_owner')->check())
 
-                        @else    
+                        {{-- ===login　中=== --}}
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    @isset($authgroup)
-                                    {{ Auth::guard($authgroup)->user()->name }} <span class="caret"></span>
-                                    @else
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                    @endisset
+                                @if(Auth::guard('store_owner')->check())
+                                    {{ Auth::guard('store_owner')->user()->name }} (Store Owner)
+                                @else
+                                    {{ Auth::user()->name }} (User)
+                                @endif
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                        onclick="event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -84,7 +63,46 @@
                                     </form>
                                 </div>
                             </li>
-                        @endguest
+                        
+                        @else
+                        {{-- ===logout　中=== --}}                            
+
+                                       {{-- as Users --}}
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>as User</a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    {{-- login --}}
+                                    <a class="dropdown-item" href="{{ route('login') }}">
+                                        {{ __('Login as User') }}
+                                    </a>
+                                    {{-- register --}}
+                                    <a class="dropdown-item" href="{{ route("register") }}">                                        
+                                        {{ __('Register as User') }}
+                                    </a>                                 
+                                </div>
+
+                            </li> 
+                            
+                            {{-- as store owner auth --}}
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Store Owner</a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    {{-- login --}}
+                                    <a class="dropdown-item" href="{{ route('store_owner.login') }}">                                        
+                                        {{ __('Login as Store Owner') }}
+                                    </a>
+                                    {{-- register --}}
+                                    <a class="dropdown-item" href="{{ route("store_owner.register") }}">                                       
+                                       {{ __('Register as Store Owner') }}
+                                    </a>                                                                        
+                                </div>
+
+                            </li>                            
+
+                        @endif
+
                     </ul>
                 </div>
             </div>
@@ -155,10 +173,6 @@
             </div>
 
         </div>
-
-
-
-
     </div>
 </body>
 </html>
