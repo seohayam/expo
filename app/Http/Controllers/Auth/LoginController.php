@@ -44,7 +44,7 @@ class LoginController extends Controller
     public function showStoreOwnerLoginForm()
     {
         // blade側で表示内容の変更が可能
-        return view('auth.login', ['authgroup' => 'store_owner']);
+        return view('auth.login', ['authgroup' => 'store_owners']);
     }
 
     public function storeOwnerLogin(Request $request)
@@ -58,7 +58,7 @@ class LoginController extends Controller
         if(Auth::guard('store_owner')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember') ))
         {
             // 元々行こうとしていたURLへ移動、引数＝元々行こうとしていた場所へ行けなかった時
-            return redirect()->intended('/store_owner');
+            return redirect()->intended('/store_owners/home');
         }
 
         return back()->withInput($request->only('email','remember'));

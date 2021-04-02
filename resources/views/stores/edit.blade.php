@@ -32,7 +32,7 @@
 
 @endif
 
-<form method="POST" action="{{route('stores.update', $store)}}" enctype="multipart/form-data">
+<form method="POST" action="{{route('stores.update', ['store_owner' => Auth::id(), 'store' => $store])}}" enctype="multipart/form-data">
     @method('PATCH')
     @csrf        
 

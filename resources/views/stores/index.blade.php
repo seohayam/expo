@@ -2,11 +2,11 @@
 
 @section('content')
 <h1>store index</h1>
-<a href="{{ route('stores.create') }}">追加する</a>
+<a href="{{ route('stores.create', ['store_owner' => Auth::id()]) }}">追加する</a>
 
 @foreach ($stores as $store)
 
-<a href="{{ route('stores.show', $store) }}">
+<a href="{{ route('stores.show', ['store_owner' => Auth::id(), 'store' => $store] ) }}">
     <h1>{{ $store->name }}</h1>
     <h1>{{ $store->storeOwner->email }}</h1>
 </a>

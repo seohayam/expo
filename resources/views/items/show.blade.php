@@ -3,10 +3,10 @@
 @section('content')
 
 
-<a href="{{ route('items.edit', $item) }}">編集</a>
-<a href="{{ route('items.index') }}">TOP</a>
+<a href="{{ route('items.edit', ['user' => Auth::id(), 'item' => $item]) }}">編集</a>
+<a href="{{ route('items.index', ['user' => Auth::id()] ) }}">TOP</a>
 
-<form action="{{ route('items.destroy', $item) }}" method="POST">
+<form action="{{ route('items.destroy', ['user' => Auth::id(), 'item' => $item] ) }}" method="POST">
   @method('DELETE')
   @csrf
   <input type="submit" value="削除">

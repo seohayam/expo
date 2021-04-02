@@ -90,7 +90,7 @@ class RegisterController extends Controller
 
      protected function showStoreOwnerRegisterForm()
      {
-         return view('auth.register', ['authgroup' => 'store_owner']);
+         return view('auth.register', ['authgroup' => 'store_owners']);
      }
 
      protected function createStoreOwner(Request $request)
@@ -102,6 +102,6 @@ class RegisterController extends Controller
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
         ]);
-        return redirect()->intended('store_owner/login');
+        return redirect()->intended('store_owners/login');
      }
 }

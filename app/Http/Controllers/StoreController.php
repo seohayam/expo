@@ -8,6 +8,7 @@ use App\Http\Requests\StoreRequest;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
+use App\StoreOwner;
 
 class StoreController extends Controller
 {
@@ -61,7 +62,7 @@ class StoreController extends Controller
 
         $store->save();
 
-        return redirect()->route('stores.edit', $store);
+        return redirect()->route('stores.edit', ['store_owner' => Auth::id(), 'store' => $store]);
 
     }
 
@@ -71,7 +72,7 @@ class StoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Store $store)
+    public function show(StoreOwner $store_owner, Store $store)
     {
         return view('stores.show', ['store' => $store]);
     }
@@ -82,7 +83,7 @@ class StoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Store $store)
+    public function edit(StoreOwner $store_owner, Store $store)
     {
         if(Auth::id() != $store->store_owner_id){
             return abort('403');
@@ -98,7 +99,7 @@ class StoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreRequest $request, Store $store)
+    public function update(StoreOwner $store_owner, StoreRequest $request, Store $store)
     {                
 
         if(Auth::id() != $store->store_owner_id){
@@ -114,7 +115,7 @@ class StoreController extends Controller
 
         $store->save();
 
-        return redirect()->route('stores.edit', $store);
+        return redirect()->route('stores.edit', ['store_owner' => Auth::id(), 'store' => $store]);
 
     }
 
@@ -124,7 +125,7 @@ class StoreController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Store $store)
+    public function destroy(StoreOwner $store_owner, Store $store)
     {
         if(Auth::id() != $store->store_owner_id){
             return abort('403');            
@@ -132,6 +133,6 @@ class StoreController extends Controller
             
         $store->delete();
 
-        return redirect()->route('stores.index');
+        return redirect()->route('stores.index', ['store_owner' => Auth::id(), 'store' => $store]);
     }
 }
