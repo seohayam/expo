@@ -18,26 +18,31 @@ class Application extends Model
         return $this->belongsTo('App\application', 'item_id', 'id');
     }
 
-    
-    
     public function storeOwner()
-    {
-        if(Auth::guard('store_owner')->check())
-        {
-            return $this->belongsTo('App\StoreOwner', 'from_store_owner_id', 'id');                            
-        }else
-        {
-            return $this->belongsTo('App\StoreOwner', 'to_store_owner_id', 'id');                            
-        }
+    {        
+            $toStoreOwner = $this->belongsTo('App\StoreOwner', 'to_store_owner_id', 'id');                  
+            $fromStoreOwner = $this->belongsTo('App\StoreOwner', 'from_store_owner_id', 'id');      
+            
+            if(!isset($toStoreOwner))
+            {
+                return $fromStoreOwner;
+            }else{
+                return $toStoreOwner;
+            }
+        
     }
     public function user()
-    {
-        if(Auth::guard('store_owner')->check())
-        {
-            return $this->belongsTo('App\User', 'to_user_id', 'id');
-        }else{
-            return $this->belongsTo('App\User', 'from_user_id', 'id');
-        }
+    {        
+            $fromUser =  $this->belongsTo('App\User', 'from_user_id', 'id');
+        
+            $toUser =  $this->belongsTo('App\User', 'to_user_id', 'id');   
+            
+            if(!isset($toUser))
+            {
+                return $fromUser;
+            }else{
+                return $toUser;
+            }
         
     }
 

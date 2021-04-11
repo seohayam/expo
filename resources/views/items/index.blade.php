@@ -61,12 +61,15 @@
         <div id="item" class="container-fluid">
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="items" role="tabpanel" aria-labelledby="nav-home-tab">
-                    <div class="container d-flex flex-wrap">
+                    <div class="container-fluid d-flex flex-wrap justify-content-center">
                         @foreach ($items as $item)
-                            <div role="card" class="col-3 p-0 item-card m-5">
-                                <a href="{{ route('items.show', ['user' => Auth::id(), 'item' => $item]) }}">
-                                    {{-- <img src="http://envato.jayasankarkr.in/code/profile/assets/img/profile-2.jpg" class="img img-responsive"> --}}
-                                    <img class="img img-responsive" alt="" src="{{ asset('/img/1.jpg') }}">
+                            <div role="card" class="col-3 p-0 item-card m-3">
+                                <a href="{{ route('items.show', ['user' => Auth::id(), 'item' => $item]) }}">                                    
+                                    @isset($item->image_path)
+                                        <img class="img img-responsive" alt="" height="155" src="{{ $item->image_path }}">
+                                    @else
+                                        <img class="img img-responsive" alt="" height="155" src="{{ asset('/img/1.jpg') }}">                                        
+                                    @endisset                                                                        
                                     <div class="item-card-name">{{$item->title}}</div>
                                     <div class="item-card-username">ユーザー名：{{$item->user->name}}</div>
                                     {{-- <div class="item-card-icons"><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin"></i></a></div> --}}

@@ -6,14 +6,15 @@
 {{$comment->content}}
 @endforeach --}}
 
-@foreach($applications as $application)
-
-state:{{$application->applicaiton_status}}
-date:{{$application->created_at}}
-form:{{$application->user->name}}
-to:{{$application->storeOwner->name}}
-
-@endforeach
+@if(isset($applications))
+{{dd($applications)}}
+    @foreach($applications as $application)
+        state:{{$application->applicaiton_status}}
+        date:{{$application->created_at}}    
+        form:{{$application->user->name}}
+        to:{{$application->storeOwner->name}}
+    @endforeach
+@endif
 
 
 <div class="container-fluid row">

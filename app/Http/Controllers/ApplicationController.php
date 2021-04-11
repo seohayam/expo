@@ -6,17 +6,11 @@ use App\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 class applicationController extends Controller
 {
 
-    public function __construct(){
-        
-        if(Auth::guard('store_owner')->check())
-        {
-            $this->middleware('auth:store_owner');
-        }else{
-            $this->middleware('auth');
-        }        
+    public function __construct(){        
     }
 
     public function index(){
