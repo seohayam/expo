@@ -42,11 +42,11 @@
                                 </div>
                                 <div class="contaienr">
                                     <p>応募したお店の数</p>
-                                    <p class="text-center">?</p>
+                                    <p class="text-center">{{$fromStoreOwnerApplicationNum}}</p>
                                 </div>
                                 <div class="contaienr">
                                     <p>オファーを受けた数</p>
-                                    <p class="text-center">?</p>
+                                    <p class="text-center">{{$fromUserApplicationNum}}</p>
                                 </div>
                                 {{-- <a href="{{$item->url}}" class="w-25 btn bg-main">ネットショップへ遷移する</a>    --}}
                                 {{-- <a class="" href="{{ route('stores.index', ['store_owner' => Auth::id()] ) }}"><i class="fas fa-2x fa-user-edit"></i></a>                                --}}

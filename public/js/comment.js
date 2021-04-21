@@ -17382,10 +17382,7 @@ var get_data = function get_data() {
     url: query + "/result/ajax",
     dataType: "json",
     success: function success(data) {
-      // console.log(data.comments);
-      console.log(query);
-      console.log(data.auth); // auth-confirmation
-
+      // auth-confirmation
       var auth = data.auth;
 
       for (var i = 0; i < data.comments.length; i++) {
@@ -17415,8 +17412,8 @@ var get_data = function get_data() {
         }
 
         if (auth == "store_owner" && !isEmpty(fromStoreOwner)) {
-          name = fromUser.name;
-          logo = "<i class=\"far fa-3x fa-user-circle\"></i>";
+          name = fromStoreOwner.name;
+          logo = "<i class=\"fas fa-3x fa-store\"></i>";
           flex = "end";
         }
 

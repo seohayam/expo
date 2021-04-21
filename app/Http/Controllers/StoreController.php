@@ -9,6 +9,7 @@ use DateTime;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
 use App\StoreOwner;
+use App\Application;
 
 class StoreController extends Controller
 {
@@ -26,11 +27,15 @@ class StoreController extends Controller
      */
     public function index()
     {
-        $stores = store::where('store_owner_id', Auth::id())->with('storeOwner')->get();
+        $storeId = Auth::guard('store_owner')->id();
+        $stores = store::where('store_owner_id', $storeId)->with('storeOwner')->get();
         $storeMax = $stores->count();
-        $store_owner = StoreOwner::where('id', Auth::id())->with('store')->first();        
+        $store_owner = StoreOwner::where('id', $storeId)->with('store')->first();        
 
-        return view('stores.index',['stores'=> $stores, 'store_owner' => $store_owner, 'storeMax' => $storeMax]);
+        $fromStoreOwnerApplicationNum   = Application::where('from_store_owner_id', $storeId)->count();
+        $fromUserApplicationNum         = Application::where('to_store_owner_id', $storeId )->count();
+
+        return view('stores.index',['stores'=> $stores, 'store_owner' => $store_owner, 'storeMax' => $storeMax, 'fromStoreOwnerApplicationNum' => $fromStoreOwnerApplicationNum, 'fromUserApplicationNum' => $fromUserApplicationNum]);
     }
 
     /**

@@ -32,11 +32,10 @@ class ItemController extends Controller
         $items = Item::where('user_id', Auth::id())->with('user')->get();
         $itemMax = $items->count();
         $user = User::where('id', Auth::id())->with('item')->first();                
-        $application = Application::where('from_user_id', Auth::id());       
-        $fromUserApplicationNum = $application->count();
-        $fromStoreOwnerApplicationNum = $application->whereNotNull('from_store_owner_id')->count();
+        $fromUserApplicationNum = Application::where('from_user_id', Auth::id())->count();
+        $fromStoreOwnerApplicationNum = Application::where('to_user_id', Auth::id())->count();
         
-        return view('items.index',['items'=> $items, 'user' => $user, 'itemMax' => $itemMax,'application' => $application,'fromUserApplicationNum' => $fromUserApplicationNum, 'fromStoreOwnerApplicationNum' => $fromStoreOwnerApplicationNum]);
+        return view('items.index',['items'=> $items, 'user' => $user, 'itemMax' => $itemMax,'fromUserApplicationNum' => $fromUserApplicationNum, 'fromStoreOwnerApplicationNum' => $fromStoreOwnerApplicationNum]);
     }
 
     /**
