@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Application;
+use App\Item;
 use App\Store;
 use DateTime;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class applicationController extends Controller
 
     public function __construct(){   
         
-        $this->middleware('auth');
+        // $this->middleware('auth');
 
     }
 
@@ -53,22 +54,25 @@ class applicationController extends Controller
     
     public function store(Request $request)
     {        
-
         // ===応募機能完了===        
-        $application = new Application();        
+        $application = new Application();           
 
         // user loginの時
-        if(Auth::check()&& !Auth::guard('store_owner')->check())
+        if(Auth::check() && !Auth::guard('store_owner')->check())
         {
+            $item = Item::where('user_id', Auth::id())->first();            
+            $application->item_id = $item->id;
             $application->store_id = $request->store_id;
             $application->from_user_id  = Auth::id();
             $application->to_store_owner_id = $request->storeOwner_id;
 
         }elseif(Auth::guard('store_owner')->check())
-        {            
-
+        {       
+            $storeId = Auth::guard('store_owner')->id();
+            $store = Store::where('store_owner_id', $storeId)->first();
+            $application->store_id = $store->id;
             $application->item_id = $request->item_id;
-            $application->from_store_owner_id = Auth::guard('store_owner')->id();
+            $application->from_store_owner_id = $storeId;
             $application->to_user_id = $request->user_id;                    
         }
         

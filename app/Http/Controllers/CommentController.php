@@ -11,7 +11,7 @@ class CommentController extends Controller
 {
     public function __construct(){
         
-        $this->middleware('auth');
+        // $this->middleware('auth');
 
     }
 
@@ -49,7 +49,7 @@ class CommentController extends Controller
         if(Auth::guard('store_owner')->check())
         {
             $auth = "store_owner";
-        }else{
+        }elseif(Auth::check()){
             $auth = "user";
         }
         

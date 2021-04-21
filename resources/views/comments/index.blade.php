@@ -2,7 +2,7 @@
 
 @section('content') --}}
 
-<div class="chat-container mx-auto pt-5 col-10">
+ <div class="chat-container mx-auto pt-5 col-10">
     <div class="chat-area">
         <div class="card">
             {{-- <div class="card-header">Comment</div> --}}

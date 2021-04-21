@@ -14,7 +14,7 @@ class ApplicaiotnTableSeeder extends Seeder
     {
         DB::table('applications')->insert([
             [
-                // 'item_id' => 1,  
+                'item_id' => 1,  
                 'store_id' => 1,                              
                 'applicaiton_status' => 'onboard',
                 'from_user_id' => 1,
@@ -23,7 +23,8 @@ class ApplicaiotnTableSeeder extends Seeder
                 'updated_at' => new DateTime(),
             ],
             [
-                'item_id' => 1,                
+                'item_id' => 2,
+                'store_id' => 1,                
                 'applicaiton_status' => 'onboard',
                 'to_user_id' => 1,
                 'from_store_owner_id' => 1,
