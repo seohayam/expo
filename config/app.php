@@ -227,6 +227,9 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Cloudder' => JD\Cloudder\Facades\Cloudder::class,
+        'google-map' => [
+            'apikey' => env('GOOGLE_MAP_API'),
+          ],
 
     ],
 
