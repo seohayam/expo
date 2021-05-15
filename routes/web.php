@@ -11,7 +11,7 @@
 |
 */
 
-use App\Http\Controllers\applicationController;
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\Auth\LoginController as AuthLoginController;
 use App\Http\Controllers\ItemController;
 use Illuminate\Support\Facades\Auth;
@@ -33,10 +33,10 @@ Route::post('/comments/store', 'CommentController@store')->name('comments.store'
 Route::get('/applications/{application}/show/result/ajax', 'CommentController@getData')->name('comments.getData');
 
 
-Route::get('/applications', 'applicationController@index')->name('applications.index');
-Route::get('/applications/{application}/show', 'applicationController@show')->name('applications.show');
-Route::post('/applications/store', 'applicationController@store')->name('applications.store');
-Route::post('/applications/update', 'applicationController@update')->name('applications.update');
+Route::get('/applications', 'ApplicationController@index')->name('applications.index');
+Route::get('/applications/{application}/show', 'ApplicationController@show')->name('applications.show');
+Route::post('/applications/store', 'ApplicationController@store')->name('applications.store');
+Route::post('/applications/update', 'ApplicationController@update')->name('applications.update');
 
 
 // Route::get('/home', 'HomeController@index')->name('home');
