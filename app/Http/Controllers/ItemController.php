@@ -108,8 +108,8 @@ class ItemController extends Controller
      */
     public function edit($item)
     {
-        $item = (int)$item;
-        $item = Item::where('id', $item)->with('user')->first();                 
+        // $item = Item::where('id', $item)->with('user')->first();       
+        $item = Item::find($item);
 
         if(Auth::id() != $item->user_id){
             return abort('403');
