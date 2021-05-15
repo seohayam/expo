@@ -130,6 +130,7 @@ class ItemController extends Controller
     {   
         // 画像アップデート：画像を消す→新規追加
 
+        $item = (int)$item;
         $item = Item::where('id', $item)->with('user')->first();
 
         if(Auth::id() != $item->user_id) {
