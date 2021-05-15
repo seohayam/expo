@@ -35,10 +35,9 @@
 </div>
 <div class="container-fluid pb-5 d-flex justify-content-center">
     <form class="col-md-6 d-flex flex-column" method="POST" action="{{route('stores.store', ['store_owner' => Auth::id()] )}}" enctype="multipart/form-data">
-        @method('PATCH')
         @csrf
         <label class="d-flex flex-column" for="image">image
-            {{-- <input class="" name="title" type="file" placeholder="title"> --}}
+            <input class="" name="image" type="file" placeholder="image">
         </label>
         <label class="d-flex flex-column" for="title">title
             <input name="name" type="text" placeholder="name" value="{{ old('name') }}">

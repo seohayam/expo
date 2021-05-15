@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Date;
 use App\StoreOwner;
 use App\Application;
+use JD\Cloudder\Facades\Cloudder;
 
 class StoreController extends Controller
 {
@@ -61,6 +62,7 @@ class StoreController extends Controller
     public function store(StoreRequest $request)
     {
         $store = new Store();
+        $storeOwnerId = Auth::guard('store_owner')->id();
 
         $store->name = $request->name;
         $store->adress = $request->adress;
@@ -68,12 +70,27 @@ class StoreController extends Controller
         $store->available = $request->available;
         $store->store_url = $request->store_url;
         $store->created_at = new DateTime();
+        $store->store_owner_id = $storeOwnerId;
 
-        dd($store);
-
+        $image = $request->file('image');
+        if($image)
+        {
+            $image_path = $image->getRealPath();
+            Cloudder::upload($image_path, null);
+            $publicId = Cloudder::getPublicId();
+            $logoUrl = Cloudder::secureShow($publicId, [
+                'width'     => 500,
+                'height'    => 500,
+            ]);
+            // DB
+            $store->image_path   = $logoUrl;
+            $store->public_id    = $publicId;
+        }
+        
         $store->save();
 
-        return redirect()->route('stores.edit', ['store_owner' => Auth::id(), 'store' => $store]);
+        // return redirect()->route('stores.edit', ['store_owner' => Auth::id(), 'store' => $store]);
+        return redirect()->route('stores.index',['store_owner' => Auth::guard('store_owner')->id()]);
 
     }
 

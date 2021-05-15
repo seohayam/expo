@@ -36,7 +36,11 @@ class applicationController extends Controller
 
         if($appCount == 0)
         {
-            return redirect()->route('items.index', Auth::id())->with('error', '応募がされていません');;
+            if(Auth::guard('user')->check())
+                return redirect()->route('items.index', Auth::id())->with('error', '応募がされていません');
+            elseif(Auth::guard('store_owner')->check()){
+                return redirect()->route('stores.index', Auth::id())->with('error', '応募がされていません');
+            }
         }        
 
         return view('applications.index', compact('applications'));
