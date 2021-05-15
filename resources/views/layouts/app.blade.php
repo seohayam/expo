@@ -27,7 +27,7 @@
 </head>
 <body>
     <div id="app">
-        <nav id="nav-top" class="navbar navbar-expand-md navbar-light shadow-sm">
+        <nav id="nav-top" class="navbar navbar-expand-md navbar-light -sm">
             <div class="container">
                 @if(Auth::check() || Auth::guard('store_owner')->check())
                     <a class="navbar-nav text-point" href="{{ route('welcome.index') }}">                    
@@ -83,7 +83,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right bg-second border none" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item boder rounded shadow mb-3" href="{{ route('logout') }}"
+                                    <a class="dropdown-item boder rounded  mb-3" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
@@ -104,11 +104,11 @@
 
                                 <div class="dropdown-menu dropdown-menu-right bg-second border none" aria-labelledby="navbarDropdown">
                                     {{-- login --}}
-                                    <a class="dropdown-item boder rounded shadow mb-3" href="{{ route('login') }}">
+                                    <a class="dropdown-item boder rounded  mb-3" href="{{ route('login') }}">
                                         {{ __('Login as User') }}
                                     </a>
                                     {{-- register --}}
-                                    <a class="dropdown-item boder rounded shadow" href="{{ route("register") }}">                                        
+                                    <a class="dropdown-item boder rounded " href="{{ route("register") }}">                                        
                                         {{ __('Register as User') }}
                                     </a>                                 
                                 </div>
@@ -121,11 +121,11 @@
 
                                 <div class="dropdown-menu dropdown-menu-right bg-second border none" aria-labelledby="navbarDropdown">
                                     {{-- login --}}
-                                    <a class="dropdown-item boder rounded shadow mb-3" href="{{ route('store_owner.login') }}">                                        
+                                    <a class="dropdown-item boder rounded  mb-3" href="{{ route('store_owner.login') }}">                                        
                                         {{ __('Login as Store Owner') }}
                                     </a>
                                     {{-- register --}}
-                                    <a class="dropdown-item boder rounded shadow" href="{{ route("store_owner.register") }}">                                       
+                                    <a class="dropdown-item boder rounded " href="{{ route("store_owner.register") }}">                                       
                                        {{ __('Register as Store Owner') }}
                                     </a>                                                                        
                                 </div>
