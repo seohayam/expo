@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 
-class applicationController extends Controller
+class ApplicationController extends Controller
 {
 
     public function __construct(Auth $auth){
