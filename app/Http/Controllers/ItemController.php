@@ -110,8 +110,8 @@ class ItemController extends Controller
     {
         // $item = Item::where('id', $item)->with('user')->first();       
         $item = Item::find($item);
-        
-        if(Auth::id() != $item['user_id']){
+        $itemUserId = optional($item)->user_id;
+        if(Auth::id() !=  $itemUserId){
             return abort('403');
         }
 
@@ -131,7 +131,8 @@ class ItemController extends Controller
         // 画像アップデート：画像を消す→新規追加
         // $item = Item::where('id', $item)->with('user')->first();
         $item = Item::find($item);
-        if(Auth::id() != $item['user_id']) {
+        $itemUserId = optional($item)->user_id;
+        if(Auth::id() != $itemUserId) {
             return abort('403');
         }
 
