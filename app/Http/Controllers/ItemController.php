@@ -110,7 +110,9 @@ class ItemController extends Controller
     {
         $item = (int)$item;
 
-        $item = Item::where('id', $item)->with('user')->first();       
+        $item = Item::where('id', $item)->with('user')->first();     
+        dd($item);
+        
         $itemUserId = optional($item)->user_id;
 
         if(Auth::id() != $itemUserId){
