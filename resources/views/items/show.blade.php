@@ -23,7 +23,6 @@
                     <a class="" href="{{ route('items.index', ['user' => Auth::id()] ) }}"><i class="fas fa-2x fa-user-edit"></i></a>  
                   </div>
                   <div class="d-flex align-items-center">
-                    {{$item->id}}
                     <a class="" href="{{ route('items.edit', ['id' => $item->id, 'user' => Auth::id(), 'item' => $item->id]) }}"><i class="fas fa-2x fa-edit"></i></a>                                                            
                   </div>
                   <div class="d-flex align-items-center">
