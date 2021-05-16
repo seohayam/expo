@@ -109,7 +109,7 @@ class ItemController extends Controller
     {
         $item = Item::with('user')->find(1);
 
-        dd($item);
+        // dd($item);
         
         $itemUserId = $item->user_id;
         $itemUserId = optional($item)->user_id;

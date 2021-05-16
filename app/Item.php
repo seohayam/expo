@@ -14,6 +14,10 @@ class Item extends Model
 
     protected $fillable = ['descripotion','image','value','item_url','user_id'];
 
+    protected $casts = [
+        'user_id' => 'integer'
+    ];
+
     // $item->user->idの
     // userの部分
     public function user()
