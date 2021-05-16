@@ -108,9 +108,8 @@ class ItemController extends Controller
      */
     public function edit($item)
     {
-        $item = (int)$item;
+        $item = Item::with('user')->where('id', $item)->first();     
 
-        $item = Item::where('id', $item)->with('user')->first();     
         dd($item);
         
         $itemUserId = optional($item)->user_id;
@@ -135,7 +134,7 @@ class ItemController extends Controller
 
         $item = (int)$item;
         // 画像アップデート：画像を消す→新規追加
-        $item = Item::where('id', $item)->with('user')->first();
+        $item = Item::with('user')->where('id', $item)->first();     
         $itemUserId = optional($item)->user_id;
         if(Auth::id() != $itemUserId) {
             return abort('403');
