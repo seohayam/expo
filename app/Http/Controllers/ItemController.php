@@ -110,7 +110,8 @@ class ItemController extends Controller
     {
         $item = Item::where('id', $item)->with('user')->first();       
         $itemUserId = optional($item)->user_id;
-        
+    
+        dd($item);
 
         if(Auth::id() != $itemUserId){
             return abort('403');
