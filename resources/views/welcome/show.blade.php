@@ -162,22 +162,20 @@
                             @endif   
                             <div class="item-card-name">{{$application->store->title}}</div>
                             <div class="item-card-username">ユーザー名：{{$application->store->storeOwner->name}}</div>
-                            {{-- <div class="item-card-icons"><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin"></i></a></div> --}}
                         </a>
                     </div>
                     
                 @elseif(isset($store))
 
                     <div role="card" class="p-0 item-card">
-                        <a href="{{ route('welcome.showItem', $application->item) }}">                                                        
-                            @if(isset($application->store->image_path))
+                        <a href="{{ route('welcome.showItem', $application->item) }}">      
+                            @if(isset($application->item->image_path))
                                 <img class="img img-responsive" alt="" height="200" src="{{ $application->item->image_path }}">
                             @else
                                 <img class="img img-responsive" alt="" height="200" src="https://res.cloudinary.com/delvmfnei/image/upload/v1621186998/1_eihryo.jpg">
                             @endif   
                             <div class="item-card-name">{{$application->item->title}}</div>
                             <div class="item-card-username">ユーザー名：{{$application->item->user->name}}</div>
-                            {{-- <div class="item-card-icons"><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin"></i></a></div> --}}
                         </a>
                     </div>
 

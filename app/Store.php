@@ -18,14 +18,14 @@ class Store extends Model
         return $this->belongsTo('App\StoreOwner', 'store_owner_id', 'id');
     }
 
-    // public function application()
-    // {
-    //     return $this->hasMany('App\application', 'item_id', 'id');
-    // }
+    public function application()
+    {
+        return $this->hasMany('App\application', 'item_id', 'id');
+    }
 
-    // public function comment()
-    // {
-    //     return $this->hasMany('App\comment', 'item_id', 'id');
-    // }
+    public function comment()
+    {
+        return $this->hasMany('App\comment', 'item_id', 'id');
+    }
 
 }

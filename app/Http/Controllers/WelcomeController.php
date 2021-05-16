@@ -64,9 +64,7 @@ class WelcomeController extends Controller
         $applications = Application::where('item_id', $itemId)->get();
         $storeId = Auth::guard('store_owner')->id();
         $storeNum = Store::where('store_owner_id', $storeId)->count();
-        // dd($applications);
-        // $store = Store::where('id', $store)->first();        
-
+        
         return view('welcome.show', ['item' => $item, 'applications' => $applications, 'storeNum' => $storeNum]);
     }
 
