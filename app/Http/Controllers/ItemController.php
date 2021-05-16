@@ -111,9 +111,9 @@ class ItemController extends Controller
         $item = Item::where('id', $item)->with('user')->first();       
         $itemUserId = optional($item)->user_id;
 
-        if(Auth::id() !=  $itemUserId){
-            return abort('403');
-        }
+        // if(Auth::id() !=  $itemUserId){
+        //     return abort('403');
+        // }
 
         return view('items.edit', ['item' => $item]);
         
