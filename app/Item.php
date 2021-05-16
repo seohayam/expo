@@ -20,7 +20,7 @@ class Item extends Model
     {
         // HasManyの逆
         // ＊\のむ気に注意
-        return $this->belongsTo('App\User', 'user_id');
+        return $this->belongsTo('App\User', 'user_id','id');
     }
 
     public function application()

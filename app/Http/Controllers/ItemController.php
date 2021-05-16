@@ -108,9 +108,11 @@ class ItemController extends Controller
      */
     public function edit($item)
     {
+        $item = Item::with('user')->find($item);
+        // $item = Item::where('id', $item)->with('user')->find();
         dd($item);
-        $item = Item::with('user')->where('id', $item)->first();     
         
+        $itemUserId = $item->user_id;
         $itemUserId = optional($item)->user_id;
 
         if(Auth::id() != $itemUserId){
