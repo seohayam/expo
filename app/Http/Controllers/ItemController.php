@@ -108,8 +108,8 @@ class ItemController extends Controller
      */
     public function edit($item)
     {
-        $item = Item::with('user')->where('id', $item)->first();     
         dd($item);
+        $item = Item::with('user')->where('id', $item)->first();     
         
         $itemUserId = optional($item)->user_id;
 
