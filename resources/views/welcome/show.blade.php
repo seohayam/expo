@@ -3,6 +3,9 @@
 @section('content')
 {{-- map --}}
 @if(isset($store))
+    <a id="web_site" target="blank" href="{{$store->store_url}}" class="smooth-map border rounded-circle p-3 shadow-lg bg-dark">
+        <i class="fas fa-2x fa-external-link-alt text-white"></i>
+    </a>
     <a id="map_btn" class="smooth-map border rounded-circle p-3 shadow-lg bg-white" data-toggle="collapse" href="#map" role="button" aria-expanded="false" aria-controls="map">
         <i class="fas fa-2x fa-map-marked-alt text-dark"></i>
     </a>
@@ -89,7 +92,6 @@
             <div class="p-sm-5">
                 <h5 class="text-title text-capitalize pb-3 text-second">{{$store->name}}</h5>
                 <p class="text-text text-truncate text-second">紹介：{{$store->description}}</p>
-                {{-- <p class="text-text text-truncate">値段：{{$store->value}}</p> --}}
                 <div class="d-flex flex-column flex-sm-row align-items-center justify-content-around pt-sm-5"> 
 
                     @if (Auth::check() && $userItemNum != 0)

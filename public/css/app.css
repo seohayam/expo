@@ -17192,6 +17192,19 @@ body #map_btn {
   right: 5%;
 }
 
+body #web_site {
+  z-index: 2147483647;
+  position: fixed;
+  bottom: 5%;
+  right: 25%;
+}
+
+@media (min-width: 576px) {
+  body #web_site {
+    right: 12%;
+  }
+}
+
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   background-color: #716040;

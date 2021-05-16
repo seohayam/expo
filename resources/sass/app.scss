@@ -152,6 +152,15 @@ body {
     bottom: 5%;
     right: 5%;
   }
+  #web_site {
+    z-index: 2147483647;
+    position: fixed;
+    bottom: 5%;
+    right: 25%;
+    @include moreMoblie() {
+      right: 12%;
+    }
+  }
 }
 // ===nav-item===
 .nav-pills .nav-link.active,
