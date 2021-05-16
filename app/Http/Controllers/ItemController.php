@@ -45,7 +45,7 @@ class ItemController extends Controller
      */
     public function create()
     {
-
+        
         return view('items.create');
     }
 
@@ -82,7 +82,7 @@ class ItemController extends Controller
             $item->image_path   = $logoUrl;
             $item->public_id    = $publicId;
         }
-        
+
         $item->save();                
 
         return redirect()->route('items.show',['user' => Auth::id(),'item' => $item]);

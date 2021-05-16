@@ -24,7 +24,7 @@
     {{-- <script src="js/bootstrap.min.js"></script> --}}
 
     <!-- Fonts -->
-    <link rel="icon" href="{{ asset('/img/favicon.io') }}" />
+    {{-- <link rel="icon" href="{{ asset('/img/favicon.io') }}" /> --}}
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
