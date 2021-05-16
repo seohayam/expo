@@ -45,7 +45,6 @@ class ItemController extends Controller
      */
     public function create()
     {
-        
         return view('items.create');
     }
 
@@ -108,6 +107,7 @@ class ItemController extends Controller
      */
     public function edit($item)
     {
+        dd($item);
         $item = Item::with('user')->find($item);
         
         $itemUserId = $item->user_id;
