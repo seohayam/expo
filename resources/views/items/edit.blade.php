@@ -28,8 +28,11 @@
 
 <div id="item" class="container-fluid d-flex justify-content-center">
     <div role="card" class="col-md-6 p-0 item-card m-5">        
-        {{-- <img src="http://envato.jayasankarkr.in/code/profile/assets/img/profile-2.jpg" class="img img-responsive"> --}}
+        @if(isset($item->image_path))
+        <img src="{{ $item->image_path }}" class="img img-responsive">
+        @else
         <img src="{{ asset('/img/1.jpg') }}" class="img img-responsive">
+        @endif
         <div class="item-card-name">{{$item->title}}</div>
         <div class="item-card-username">ユーザー名：{{$item->user->name}}</div>
         {{-- <div class="item-card-icons"><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin"></i></a></div> --}}        
