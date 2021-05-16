@@ -51,8 +51,8 @@ Route::prefix('users')->group(function(){
         Route::post('/register', 'Auth\RegisterController@register')->name('register');
     });
 
-    Route::post('/logout','Auth\LoginController@logout')->name('logout');
     Route::resource('{user}/items', 'ItemController');        
+    Route::post('/logout','Auth\LoginController@logout')->name('logout');
     Route::get('/home', 'HomeController@index')->name('home.index');    
 });
 
@@ -63,9 +63,9 @@ Route::prefix('store_owners')->group(function(){
         Route::post('/login', 'Auth\LoginController@storeOwnerLogin')->name('store_owner.login');
         Route::post('/register', 'Auth\RegisterController@createStoreOwner')->name('store_owner.register');        
     });    
-
-    Route::post('/logout','Auth\LoginController@logout')->name('logout');
+    
     Route::resource('{store_owner}/stores', 'StoreController');    
+    Route::post('/logout','Auth\LoginController@logout')->name('logout');
     Route::get('/home', 'HomeController@index')->name('home.index');
 });
 
