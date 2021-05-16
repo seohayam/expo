@@ -107,9 +107,8 @@ class ItemController extends Controller
      */
     public function edit($item)
     {
-        $item = Item::with('user')->find(1);
-
-        // dd($item);
+        $item = (int)$item;
+        $item = Item::with('user')->find($item);
         
         $itemUserId = $item->user_id;
         $itemUserId = optional($item)->user_id;
