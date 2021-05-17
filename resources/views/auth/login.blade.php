@@ -57,14 +57,14 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn bg-second">
+                                <button type="submit" class="btn bg-second col-12 mb-2">
                                     {{ __('Login') }}
                                 </button>
                                 
                                 @if(Request::is('users/*'))
-                                <a href="/login/google" class="btn btn-secondary" role="button">
-                                    Google Login
-                                </a>
+                                <a href="/login/google" class="btn btn-block btn-social btn-google text-white col-12" style="background-color: #DD4B39">
+                                    <span class="fab fa-google"></span> Sign in with Google
+                                  </a>
                                 @endif
 
                                 @if (Route::has('password.request'))
