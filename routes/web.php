@@ -65,7 +65,7 @@ Route::prefix('store_owners')->group(function(){
         Route::get('/login', 'Auth\LoginController@showStoreOwnerLoginForm');
         Route::get('/register', 'Auth\RegisterController@showStoreOwnerRegisterForm');
         Route::post('/login', 'Auth\LoginController@storeOwnerLogin')->name('store_owner.login');
-        Route::post('/register', 'Auth\RegisterController@createStoreOwner')->name('store_owner.register');        
+        Route::post('/register', 'Auth\RegisterController@createStoreOwner')->name('store_owner.register');
     });
 
     Route::resource('{store_owner}/stores', 'StoreController');
@@ -74,13 +74,7 @@ Route::prefix('store_owners')->group(function(){
 });
 
 Route::get('like/{version}/{post}/firstCheck', 'LikeController@firstCheck');
-// Route::get('like/store/{post}/firstCheck', 'LikeController@storeFirstCheck');
 Route::get('like/{version}/{post}/check', 'LikeController@check');
-// Route::get('like/store/{post}/check', 'LikeController@storeCheck');
-
-// Route::get('/home', 'HomeController@index')->name('home');
-
-// Route::view('/store_owners', 'store_owner')->middleware('auth:store_owner')->name('store_owner-home');
 
 
 
