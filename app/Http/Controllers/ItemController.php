@@ -37,7 +37,7 @@ class ItemController extends Controller
         $fromStoreOwnerApplicationNum = Application::where('to_user_id', Auth::id())->count();
         // like
         $likeItems = Like::where('user_id', Auth::guard('user')->id())->where('status', 1)->whereNotNull('item_id')->with('item')->get();
-        $likeStores = Like::where('store_owner_id', Auth::guard('store_owner')->id())->where('status', 1)->whereNotNull('store_id')->with('store')->get();
+        $likeStores = Like::where('user_id', Auth::guard('user')->id())->where('status', 1)->whereNotNull('store_id')->with('store')->get();
 
         return view('items.index',['items'=> $items, 'user' => $user, 'itemMax' => $itemMax,'fromUserApplicationNum' => $fromUserApplicationNum, 'fromStoreOwnerApplicationNum' => $fromStoreOwnerApplicationNum, 'likeItems' => $likeItems, 'likeStores' => $likeStores]);
     }

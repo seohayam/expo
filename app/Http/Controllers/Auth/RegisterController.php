@@ -42,8 +42,9 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
-        $this->middleware('guest:store_owner');
+        // $this->middleware('guest');
+        // $this->middleware('guest:store_owner');
+        $this->middleware('guest:user,store_owner');
     }
 
     /**
@@ -105,10 +106,9 @@ class RegisterController extends Controller
         ]);
         // return redirect()->intended('store_owners/login');
         // return redirect()->intended('store_owners/login');
-        event(new Registered($user = $this->create($request->all())));
+        // event(new Registered($user = $this->create($request->all())));
+        $this->guard()->login($store_owner);
 
-        $this->guard()->login($user);
-
-        return $this->registered($request, $user) ? : redirect($this->redirectPath());
+        return $this->registered($request, $store_owner) ? : redirect()->route('store_owner.login');
     }
 }

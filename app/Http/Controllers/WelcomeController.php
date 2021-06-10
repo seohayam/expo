@@ -14,7 +14,7 @@ class WelcomeController extends Controller
 
     public function __construct(Auth $auth){
         
-        $this->middleware('auth:user,store_owner');
+        // $this->middleware('auth:user,store_owner');
     }
 
 
