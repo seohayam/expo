@@ -160,14 +160,15 @@ class ItemController extends Controller
      * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request,$item)
-    {                                
-        $item = Item::where('id', $item)->with('user')->first();                 
+    public function destroy(Request $request)
+    {
+        $item = $request->item;
+        $item = Item::where('id', $item)->with('user')->first();
 
         if(Auth::id() != $item->user_id){
-            return abort('403');            
-        }                  
-            
+            return abort('403');
+        }
+
         $item->delete();
 
         return redirect()->route('items.index', ['user' => Auth::id()]);

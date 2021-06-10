@@ -59,7 +59,7 @@ class LoginController extends Controller
         $this->validate($request, [
             'email'   => 'required|email',
             'password' => 'required|min:6',
-        ]); 
+        ]);
 
         // エラー分が出てるが気にしない
         if(Auth::guard('store_owner')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember') ))
@@ -82,7 +82,7 @@ class LoginController extends Controller
     public function handleGoogleCallback()
     {
         // Google 認証後の処理
-        $gUser = Socialite::driver('google')->user();
+        $gUser = Socialite::driver('google')->stateless()->user();
 
         $user = User::where('email', $gUser->email)->first();
         // 見つからなければ新しくユーザーを作成

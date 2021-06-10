@@ -36,5 +36,6 @@ return [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
         'redirect' => 'https://laravel-coshop.herokuapp.com/login/google/callback',
+        // 'redirect' => 'http://localhost:8000/login/google/callback',
     ],
 ];

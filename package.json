@@ -29,6 +29,7 @@
     },
     "dependencies": {
         "bootstrap-icons": "^1.4.1",
-        "toastr": "^2.1.4"
+        "toastr": "^2.1.4",
+        "vue-swal": "^1.0.0"
     }
 }

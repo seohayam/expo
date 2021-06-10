@@ -1,4 +1,9 @@
+// axios用
 import axios from "axios";
+// vue-alert用
+import Vue from "vue";
+import VueSwal from "vue-swal";
+Vue.use(VueSwal);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -27,6 +32,10 @@ Vue.component(
 Vue.component(
   "like-component",
   require("./components/LikeComponent.vue").default
+);
+Vue.component(
+  "alert-component",
+  require("./components/AlertComponent.vue").default
 );
 
 /**
