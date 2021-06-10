@@ -16,25 +16,18 @@ class StoreOwnerTableSeeder extends Seeder
         [
             [                
                 'name' => "kyameron",
-                'email' => "s@bcd",
-                "password" => bcrypt("asdfghjkl"),                
+                'email' => "example@example1",
+                "password" => bcrypt("asdfgfafsa2e2379279324fashfihsfhdfiahjkl"),                
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
             ],
             [                
                 'name' => "same",
-                'email' => "s@bce",
-                "password" => bcrypt("kame"), 
+                'email' => "example@example2",
+                "password" => bcrypt("fafjsajfaflalkjfdsjfoajfiefe382492jkakkaoj"), 
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),               
             ],
-            [                
-                'name' => "tome",
-                'email' => "s@bcf",
-                "password" => bcrypt("mame"), 
-                'created_at' => new DateTime(),
-                'updated_at' => new DateTime(),               
-            ]            
         ]);
     }
 }

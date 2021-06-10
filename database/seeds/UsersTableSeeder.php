@@ -15,26 +15,19 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert(
             [
             [                
-                'name' => "kame",
+                'name' => "ジェシー",
                 'email' => "a@bcd",
                 "password" => bcrypt("qwert"),                
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),
             ],
             [                
-                'name' => "same",
+                'name' => "サム",
                 'email' => "b@bce",
                 "password" => bcrypt("asdfg"), 
                 'created_at' => new DateTime(),
                 'updated_at' => new DateTime(),               
             ],
-            [                
-                'name' => "tome",
-                'email' => "c@bcf",
-                "password" => bcrypt("zxcvb"), 
-                'created_at' => new DateTime(),
-                'updated_at' => new DateTime(),               
-            ]            
             ]);
     }
 }
