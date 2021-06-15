@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'CoShop'),
 
     /*
     |--------------------------------------------------------------------------
@@ -232,6 +232,6 @@ return [
     ],
 
     // google_analytics
-    'google_analytics' => env('GOOGLE_ANALYTICS', 'production'),
+    'google_analytics' => env('GOOGLE_ANALYTICS', 'G-35E7K63Z86'),
 
 ];
