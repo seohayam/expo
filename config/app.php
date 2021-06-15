@@ -231,4 +231,7 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ],
 
+    // google_analytics
+    'google_analytics' => env('GOOGLE_ANALYTICS', 'production'),
+
 ];
