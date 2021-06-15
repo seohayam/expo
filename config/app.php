@@ -232,6 +232,6 @@ return [
     ],
 
     // google_analytics
-    'google_analytics' => env('GOOGLE_ANALYTICS', 'G-35E7K63Z86'),
+    'google_analytics' => env('GOOGLE_ANALYTICS'),
 
 ];
