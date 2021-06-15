@@ -17,19 +17,17 @@
     <title>CoShop</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>    
+    <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    {{-- map --}}
-    {{-- <script src="https://maps.googleapis.com/maps/api/js?language=ja&region=JP&key=AIzaSyCC05dInZBrIvVs5I4iAzTdGOqT2TExrEY&callback=initMap" async defer></script> --}}
-    {{-- <script src="js/bootstrap.min.js"></script> --}}
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-35E7K63Z86"></script>
 
     <!-- Fonts -->
-    <link rel="icon" href="{{ asset('/img/favicon.io') }}" />
+    <link rel="canonical" href="https://laravel-coshop.herokuapp.com">
+    <link rel="icon" href="https://res.cloudinary.com/delvmfnei/image/upload/v1623767157/favicon_1_l6wb5i.ico" />
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-    <!-- Styles -->      
-    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+    <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
 </head>
@@ -181,7 +179,7 @@
                                 <a class="nav-link" href="#">サービスの趣旨</a>
                             </li>
                         </ul>
-                    </div>                                
+                    </div>
                 </nav>
 
                 <nav role="social-icon-nav" class="navbar navbar-expand-lg navbar-light">
@@ -218,7 +216,7 @@
                                 </a>
                             </li>
                         </ul>
-                    </div>                                
+                    </div>
                 </nav>
 
                 <small>&copy;haruto All rights Resved</small>
@@ -229,6 +227,15 @@
     </div>
 
     @yield('js')
-    <script src="{{ mix('/js/smooth.js') }}"></script>
+        <script src="{{ mix('/js/smooth.js') }}"></script>
+
+    @if(config('app.google_analytics') === 'production')
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', config('app.google_analytics'));
+    </script>
+    @endif
 </body>
 </html>
