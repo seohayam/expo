@@ -152,7 +152,7 @@
     <div class="col-12 d-flex flex-column flex-sm-row align-items-center item-card-container">
         @if(isset($applications))
             @foreach($applications as $application)
-                @if(isset($item))
+                @if(isset($item) && $application->applicaiton_status == "accept")
 
                     <div role="card" class="p-0 item-card">
                         <a href="{{ route('welcome.showStore', $application->store) }}">                                                        
@@ -165,9 +165,8 @@
                             <div class="item-card-username">ユーザー名：{{$application->store->storeOwner->name}}</div>
                         </a>
                     </div>
-                    
-                @elseif(isset($store))
-                
+
+                @elseif(isset($store) && $application->applicaiton_status == "accept")
                     <div role="card" class="p-0 item-card">
                         <a href="{{ route('welcome.showItem', $application->item) }}">      
                             @if(isset($application->item->image_path))

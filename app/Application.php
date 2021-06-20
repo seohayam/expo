@@ -10,7 +10,7 @@ class Application extends Model
 {
     protected $regurded = array('id');
 
-    protected $fillable = ['item_id','store_id','from_user_id','from_store_owner_id','to_user_id','to_store_owner_id','application-status'];
+    protected $fillable = ['item_id','store_id','from_user_id','from_store_owner_id','to_user_id','to_store_owner_id','application_status'];
 
 
     public function item()
