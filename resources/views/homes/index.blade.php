@@ -2,7 +2,6 @@
 @extends('layouts.app')
 
 @section('content')
-
 <a id="explanation_btn" href="#home_content" class="smooth border rounded-circle p-1 shadow-lg bg-white">
     <i class="far fa-3x fa-question-circle text-dark"></i>
 </a>

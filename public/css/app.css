@@ -17086,6 +17086,20 @@ readers do not read off random characters that represent icons */
   font-weight: 400;
 }
 
+.new {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: aqua;
+  box-shadow: -7px -7px 15px white, 7px 7px 15px rgba(70, 70, 70, 0.08);
+  text-decoration: none;
+  outline: none;
+}
+
+.new:active {
+  box-shadow: -7px -7px 15px rgba(255, 255, 255, 0.4), 7px 7px 15px rgba(70, 70, 70, 0.08), inset -7px -7px 15px rgba(255, 255, 255, 0.4), inset 7px 7px 15px rgba(70, 70, 70, 0.08);
+}
+
 .cursor {
   cursor: pointer;
 }

@@ -94,49 +94,28 @@
             </div>
 
             {{-- イイね --}}
-            <div class="d-flex flex-column flex-sm-row">
-
-                <div class="like col-sm-5 mx-auto mb-5">
-                    <div class="text-center pb-5">
-                        <h3>イイね一覧（商品）</h3>
-                    </div>
-
-                    <div class="d-flex flex-olumn felx-sm-row flex-nowrap overflow-auto">
-                        @foreach($likeItems as $likeItem)
-                            <div role="card" class="col-auto item-card p-0 mx-2">
-                                <a href="{{ route('welcome.showItem', optional($likeItem->item)->id) }}">
-                                    @isset(optional($likeItem->item)->image_path)
-                                        <img height="200px" class="img img-responsive" alt="" src="{{ optional($likeItem->item)->image_path }}">
-                                    @else
-                                        <img height="200px" class="img img-responsive" alt="" src="https://res.cloudinary.com/delvmfnei/image/upload/v1621186998/1_eihryo.jpg">                                        
-                                    @endisset
-                                    <div class="item-card-name">{{optional($likeItem->item)->title}}</div>
-                                    <div class="item-card-username">ユーザー名：{{optional(optional($likeItem->item)->user)->name}}</div>
-                                </a>
-                            </div>
-                        @endforeach
-                    </div>
+            <div class="border rounded bg-second m-3">
+                
+                <div class="text-center my-3 my-sm-5">
+                    <i class="far fa-3x fa-heart"></i>
                 </div>
 
-                <div class="like col-sm-5 mx-auto mb-5">
-                    <div class="text-center pb-5">
-                        <h3>イイね一覧（ストア）</h3>
-                    </div>
-                    <div class="d-flex flex-olumn felx-sm-row flex-nowrap overflow-auto">
-                        @foreach($likeStores as $likeStore)
-                        <div role="card" class="col-auto item-card p-0 mx-2">
-                                <a href="{{ route('welcome.showStore', optional($likeStore->store)->id) }}">
-                                    @isset(optional($likeStore->store)->image_path)
-                                        <img height="200px" class="img img-responsive" alt="" src="{{ optional($likeStore->store)->image_path }}">
-                                    @else
-                                        <img height="200px" class="img img-responsive" alt="" src="https://res.cloudinary.com/delvmfnei/image/upload/v1621186998/1_eihryo.jpg">                                        
-                                    @endisset
-                                    <div class="item-card-name">{{optional($likeStore->store)->title}}</div>
-                                    <div class="item-card-username">店舗名：{{optional($likeStore->store)->name}}</div>
-                                </a>
-                            </div>
-                        @endforeach
-                    </div>
+                <div class="d-flex flex-wrap">
+
+                    @foreach($likeStores as $likeStore)
+                        <div class="like-item col-4 p-2 p-sm-3">
+                            <a href="{{ route('welcome.showStore', optional($likeStore->store)->id) }}">
+                                @isset(optional($likeStore->store)->image_path)
+                                    <img width="100%" alt="" src="{{ optional($likeStore->store)->image_path }}">
+                                @else
+                                    <img width="100%" alt="" src="https://res.cloudinary.com/delvmfnei/image/upload/v1621186998/1_eihryo.jpg">                                        
+                                @endisset
+                                <div class="text-dark d-none">{{optional($likeStore->store)->title}}</div>
+                                <div class="text-dark d-none d-sm-block">店舗名：{{optional($likeStore->store)->name}}</div>
+                            </a>
+                        </div>
+                    @endforeach
+
                 </div>
             </div>
 

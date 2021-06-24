@@ -25,6 +25,28 @@ $second: #eaddcf;
 $point: #716040;
 $button: #8c7851;
 
+// newmorphism
+.new {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // width: 100px;
+  // height: 100px;
+  // border-radius: 50%;
+  color: aqua;
+  box-shadow: -7px -7px 15px rgba(255, 255, 255, 1),
+    7px 7px 15px rgba(70, 70, 70, 0.08);
+  text-decoration: none;
+  outline: none;
+}
+
+.new:active {
+  box-shadow: -7px -7px 15px rgba(255, 255, 255, 0.4),
+    7px 7px 15px rgba(70, 70, 70, 0.08),
+    inset -7px -7px 15px rgba(255, 255, 255, 0.4),
+    inset 7px 7px 15px rgba(70, 70, 70, 0.08);
+}
+
 // ===cursor===
 .cursor {
   cursor: pointer;
