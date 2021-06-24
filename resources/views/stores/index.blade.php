@@ -69,7 +69,7 @@
 
                     @foreach($likeItems as $likeItem)
                         <div class="like-item col-4 p-2 p-sm-3">
-                            <a href="{{ route('welcome.showStore', optional($likeItem->item)->id) }}">
+                            <a href="{{ route('welcome.showItem', optional($likeItem->item)->id) }}">
                                 @isset(optional($likeItem->item)->image_path)
                                     <img width="100%" alt="" src="{{ optional($likeItem->item)->image_path }}">
                                 @else
