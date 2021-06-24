@@ -233,6 +233,7 @@ return [
 
     // google_analytics
     // env('環境変数の値', 'デフォルトの値ー環境変数に値がなかった場合')
+    'google_analytics_deployment' =>env('GOOGLE_ANALYTICS_DEPLOYMENT'),
     'google_analytics' => env('GOOGLE_ANALYTICS'),
     'google_maps_api' => env('GOOGLE_MAPS_API'),
 

@@ -23,7 +23,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src='https://www.googletagmanager.com/gtag/js?id={{config('google_maps_api')}}'></script>
 
-    @if(config("app.google_analytics"))
+    @if(config("app.google_analytics_deployment") == true)
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
