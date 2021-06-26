@@ -96,7 +96,7 @@ class LoginController extends Controller
 
         $links = Session::get('urls');
 
-        dd($links[1]);
+        dd($links);
 
 
 
