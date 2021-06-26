@@ -12,6 +12,7 @@ use App\User;
 use App\StoreOwner;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -76,12 +77,31 @@ class LoginController extends Controller
     // googleLogin
     public function redirectToGoogle()
     {
+
         // Google へのリダイレクト
         return Socialite::driver('google')->redirect();
     }
 
     public function handleGoogleCallback()
     {
+        $urls = array();
+        if(Session::has('links')){
+            $urls[] = Session::get('links');
+        }
+
+        $currentUrl = $_SERVER['REQUEST_URI'];
+        
+        array_unshift($urls, $currentUrl);
+        Session::flash('urls', $urls);
+
+        $links = Session::get('urls');
+
+        dd($links[1]);
+
+
+
+
+
         // Google 認証後の処理
         $gUser = Socialite::driver('google')->stateless()->user();
 
