@@ -88,7 +88,7 @@ class LoginController extends Controller
         $preUrl = url()->previous();
         $preUrl = $preUrl;
 
-        var_dump($preUrl);
+        dd($preUrl);
 
         if(str_contains($preUrl, "type=user") == true){
 
