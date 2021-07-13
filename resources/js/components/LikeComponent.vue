@@ -1,35 +1,24 @@
 <template>
-  <div class="container">
-    <div class="row justify-content-center mt-1">
-      <div class="col-md-12">
-        <div class="vue_like_container">
-          <button
-            class="border-0 vue_like_btn"
-            type="button"
-            v-if="status == false"
-            @click.prevent="check()"
-          >
-            <i class="far fa-3x fa-heart"></i>
-            <p>{{ count }}</p>
-          </button>
-          <button
-            class="border-0 vue_like_btn"
-            type="button"
-            v-else
-            @click.prevent="check()"
-          >
-            <i class="fas fa-3x fa-heart"></i>
-            <p>{{ count }}</p>
-          </button>
-        </div>
-      </div>
-    </div>
+  <div class="card-like">
+    <button type="button" v-if="status == false" @click.prevent="check()">
+      <i class="far fa-heart"></i>
+      <p>{{ count }}</p>
+    </button>
+    <button type="button" v-else @click.prevent="check()">
+      <i class="fas fa-heart"></i>
+      <p>{{ count }}</p>
+    </button>
   </div>
 </template>
 
 <script>
 export default {
   props: ["post", "version"],
+  mounted() {
+    console.log("これはらいくコンポーネントです");
+    console.log(this.post);
+    console.log(this.version);
+  },
 
   // vue ないで使えるデータを持たせる
   data() {

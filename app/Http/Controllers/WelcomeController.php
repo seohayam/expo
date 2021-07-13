@@ -61,7 +61,7 @@ class WelcomeController extends Controller
     public function showItem($itemId)
     {
         $item = Item::where('id', $itemId)->first();
-        $applications = Application::where('item_id', $itemId)->get();
+        $applications = Application::where('item_id', $itemId)->with('store')->get();
         $storeId = Auth::guard('store_owner')->id();
         $storeNum = Store::where('store_owner_id', $storeId)->count();
         
@@ -73,7 +73,7 @@ class WelcomeController extends Controller
         $userItems = Item::where('user_id', Auth::id())->get();
         $userItemNum = $userItems->count();
         $store = Store::where('id', $storeId)->first();   
-        $applications = Application::where('store_id', $storeId)->get(); 
+        $applications = Application::where('store_id', $storeId)->with('item')->get(); 
 
         return view('welcome.show', ['store' => $store, 'applications' => $applications, 'userItems' => $userItems, 'userItemNum' => $userItemNum]);
     }

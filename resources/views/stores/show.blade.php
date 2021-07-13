@@ -2,6 +2,14 @@
 
 @section('content')
 
+<div class="show-img">
+  <img src="https://res.cloudinary.com/delvmfnei/image/upload/v1621186998/1_eihryo.jpg" alt="">
+</div>
+<div class="show-text"></div>
+{{-- if it exsits --}}
+<div class="show-map"></div>
+<div class="show-opposite"></div>
+
 {{-- img --}}
 <div class="contaienr-fluid py-5">
   <div class="col-7 col-sm-5 mx-auto">

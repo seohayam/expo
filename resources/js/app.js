@@ -37,6 +37,10 @@ Vue.component(
   "alert-component",
   require("./components/AlertComponent.vue").default
 );
+Vue.component(
+  "little-card-component",
+  require("./components/LittleCardComponet.vue").default
+);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

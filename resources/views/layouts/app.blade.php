@@ -35,59 +35,111 @@
     <!-- Fonts -->
     <link rel="canonical" href="https://laravel-coshop.herokuapp.com">
     <link rel="icon" href="https://res.cloudinary.com/delvmfnei/image/upload/v1623767157/favicon_1_l6wb5i.ico" />
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    {{-- <link rel="dns-prefetch" href="//fonts.gstatic.com"> --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Raleway&display=swap" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
 </head>
 <body>
+    {{-- gobal-nav --}}
+    <div class="gloabl-nav">
+        <div class="global-nav-container">
+
+            <a href="{{ route('welcome.index') }}">
+                <i class="fas fa-search"></i>
+                <p>探す</p>
+            </a>
+
+            @if(Auth::guard('user')->check())
+                <a href="{{ route('items.index',['user' => Auth::guard('user')->user()->id])}}">
+            @elseif(Auth::guard('store_owner')->check())
+                <a href="{{ route('stores.index',['store_owner' => Auth::guard('store_owner')->user()->id])}}">
+            @endif
+                <i class="fas fa-heart"></i>
+                <p>いいね</p>
+            </a>
+
+            @if(Auth::guard('user')->check())
+                <a href="{{ route('items.create',['user' => Auth::guard('user')->user()->id])}}">
+            @elseif(Auth::guard('store_owner')->check())
+                <a href="{{ route('stores.create',['store_owner' => Auth::guard('store_owner')->user()->id])}}">
+            @endif
+                <i class="fas fa-plus-circle"></i>
+                <p>追加</p>
+            </a>
+
+            <a href="{{route('applications.index')}}">
+                <i class="fas fa-comment"></i>
+                <p>チャット</p>
+            </a>
+
+            @if(Auth::guard('user')->check())
+                <a href="{{ route('items.index',['user' => Auth::guard('user')->user()->id])}}">
+            @elseif(Auth::guard('store_owner')->check())
+                <a href="{{ route('stores.index',['store_owner' => Auth::guard('store_owner')->user()->id])}}">
+            @endif
+                <i class="fas fa-user"></i>
+                <p>設定</p>
+            </a>
+        </div>
+
+
+    </div>
+
+    {{-- app --}}
     <div id="app">
+
+        {{-- @if(Auth::guard('user')->check() || Auth::guard('store_owner')->check())
+        @else --}}
         <nav id="nav-top" class="navbar navbar-expand-md navbar-light -sm">
             <div class="container">
                 @if(Auth::check() || Auth::guard('store_owner')->check())
-                    <a class="navbar-nav text-point" href="{{ route('welcome.index') }}">                    
+                    <a class="navbar-nav text-point" href="{{ route('welcome.index') }}">                   
                 @else
-                    <a class="navbar-nav text-point" href="{{ url('/') }}">                    
+                    <a class="navbar-nav text-point" href="{{ url('/') }}">                   
                 @endif
                     CoShop
                 </a>
                 <button id="login_nav" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
+  
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                                               
+                                              
                     </ul>
-
+  
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">                                                                  
+                    <ul class="navbar-nav ml-auto">                                                                 
                         @if (Auth::check() || Auth::guard('store_owner')->check())
-
+  
                         {{-- ===login　中=== --}}
-
+  
                             <li class="nav-item mr-3">
-                                @if(!Route::is('welcome.index'))     
-                                    <a class="btn bg-point text-second" href="{{ route('welcome.index')}}">                                                                   
-                                        @if(Auth::guard('store_owner')->check())                                        
+                                @if(!Route::is('welcome.index'))    
+                                    <a class="btn bg-point text-second" href="{{ route('welcome.index')}}">                                                                  
+                                        @if(Auth::guard('store_owner')->check())                                       
                                             <i class="text-second fas fa-search"></i>　商品を探す
                                         @elseif(Auth::guard("user")->check())
                                             <i class="text-second fas fa-search"></i>　お店を探す
-                                        @endif     
-                                    </a>  
-                                @else                                                                                                   
-                                        @if(Auth::guard('store_owner')->check())                                      
+                                        @endif    
+                                    </a> 
+                                @else                                                                                                  
+                                        @if(Auth::guard('store_owner')->check())                                     
                                             <a class="btn bg-point text-second" href="{{ route('stores.index',['store_owner' => Auth::guard('store_owner')->user()->id])}}">
                                                 <i class="fas fa-store-alt text-second"></i>　プロフィールへ
                                             </a>
                                         @elseif(Auth::guard("user")->check())
                                             <a class="btn bg-point text-second" href="{{ route('items.index', ['user' => Auth::user()->id])}}">
                                                 <i class="far fa-user-circle"></i>　プロフィールへ
-                                            </a>                            
-                                        @endif                                                               
-                                @endif                
+                                            </a>                           
+                                        @endif                                                              
+                                @endif               
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -97,7 +149,7 @@
                                     {{ Auth::user()->name }}
                                 @endif
                                 </a>
-
+  
                                 <div class="dropdown-menu dropdown-menu-right bg-second border none m-0 p-0" aria-labelledby="navbarDropdown">
                                     @if(Auth::guard('user')->check())
                                     <a class="dropdown-item boder none rounded bg-point text-main text-center" href="{{ route('logout') }}"
@@ -105,7 +157,7 @@
                                                         document.getElementById('logout-form').submit();">
                                         {{ __('ログアウト') }}
                                     </a>
-
+  
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
@@ -115,21 +167,21 @@
                                                             document.getElementById('logout-form').submit();">
                                             {{ __('ログアウト') }}
                                         </a>
-
+  
                                         <form id="logout-form" action="{{ route('store_owner.logout') }}" method="POST" style="display: none;">
                                             @csrf
                                         </form>
                                     @endif
                                 </div>
                             </li>
-                        
+                       
                         @else
-                        {{-- ===logout　中=== --}}                            
-
+                        {{-- ===logout　中=== --}}                           
+  
                                        {{-- as Users --}}
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>ユーザー</a>
-
+  
                                 <div class="dropdown-menu dropdown-menu-right bg-main shadow border noen p-3" aria-labelledby="navbarDropdown">
                                     {{-- login --}}
                                     <a class="dropdown-item boder rounded mb-3" href="{{ route('login') }}">
@@ -137,37 +189,38 @@
                                     </a>
                                     <hr class="bg-second">
                                     {{-- register --}}
-                                    <a class="dropdown-item boder rounded" href="{{ route("register") }}">                                        
+                                    <a class="dropdown-item boder rounded" href="{{ route("register") }}">                                       
                                         {{ __('新規登録') }}
-                                    </a>                                 
+                                    </a>                                
                                 </div>
-
-                            </li> 
-                            
+  
+                            </li>
+                           
                             {{-- as store owner auth --}}
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>ストアオーナー</a>
-
+  
                                 <div class="dropdown-menu dropdown-menu-right bg-main border none shadow p-3" aria-labelledby="navbarDropdown">
                                     {{-- login --}}
-                                    <a class="dropdown-item boder rounded  mb-3" href="{{ route('store_owner.login') }}">                                        
+                                    <a class="dropdown-item boder rounded  mb-3" href="{{ route('store_owner.login') }}">                                       
                                         {{ __('ログイン（ストア）') }}
                                     </a>
                                     <hr class="bg-second">
                                     {{-- register --}}
-                                    <a class="dropdown-item boder rounded " href="{{ route("store_owner.register") }}">                                       
+                                    <a class="dropdown-item boder rounded " href="{{ route("store_owner.register") }}">                                      
                                        {{ __('新規登録（ストア）') }}
-                                    </a>                                                                        
+                                    </a>                                                                       
                                 </div>
-
-                            </li>                            
-
+  
+                            </li>                           
+  
                         @endif
-
+  
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> 
+        {{-- @endif --}}
 
         <main class="bg-main">
             @if(session('error'))
@@ -180,67 +233,70 @@
             @yield('content')
         </main>
 
-        <div id="footer" class="bg-second d-flex align-items-center jsutify-content-around">
+        @if(Auth::guard('user')->check() || Auth::guard('store_owner')->check())
+        @else
+            <div id="footer" class="bg-second d-flex align-items-center jsutify-content-around">
 
-            <div class="container-fluid text-center">
+                <div class="container-fluid text-center">
 
-                <h1><a class="text-point" href="#">CoShop</a></h1>
+                    <h1><a class="text-point" href="#">CoShop</a></h1>
 
-                <nav role="footer-nav" class="navbar navbar-expand-lg navbar-light">
-                    <div class="container-fluid d-flex justify-content-center">                                    
-                        <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="#">開発者について</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">サービスの趣旨</a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
+                    <nav role="footer-nav" class="navbar navbar-expand-lg navbar-light">
+                        <div class="container-fluid d-flex justify-content-center">                                    
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="#">開発者について</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">サービスの趣旨</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
 
-                <nav role="social-icon-nav" class="navbar navbar-expand-lg navbar-light">
-                    <div class="container-fluid d-flex justify-content-center">                                    
-                        <ul class="navbar-nav d-flex flex-row">
-                            <li class="nav-item mx-2">
-                                <a class="nav-link" href="https://twitter.com/creationH1" target="_blank" rel="noopener noreferrer">
-                                    <i class="fab fa-twitter fa-2x rounded rounded-circle bg-main
-                                    p-2"></i>
-                                </a>
-                            </li>
-                            <li class="nav-item mx-2">
-                                <a class="nav-link" href="https://www.instagram.com/harutopcp/" target="_blank" rel="noopener noreferrer">
-                                    <i class="fab fa-instagram fa-2x rounded rounded-circle bg-main
-                                    p-2"></i>
-                                </a>
-                            </li>
-                            <li class="nav-item mx-2">
-                                <a class="nav-link" href="https://www.facebook.com/ino.haruto.3" target="_blank" rel="noopener noreferrer">
-                                    <i class="fab fa-facebook fa-2x rounded rounded-circle bg-main
-                                    p-2"></i>
-                                </a>
-                            </li>
-                            <li class="nav-item mx-2">
-                                <a class="nav-link" href="https://github.com/seohayam" target="_blank" rel="noopener noreferrer">
-                                    <i class="fab fa-github fa-2x rounded rounded-circle bg-main
-                                    p-2"></i>
-                                </a>
-                            </li>
-                            <li class="nav-item mx-2">
-                                <a class="nav-link" href="https://www.linkedin.com/in/haruto-ino-87251519b/" target="_blank" rel="noopener noreferrer">
-                                    <i class="fab fa-linkedin fa-2x rounded rounded-circle bg-main
-                                    p-2"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
+                    <nav role="social-icon-nav" class="navbar navbar-expand-lg navbar-light">
+                        <div class="container-fluid d-flex justify-content-center">                                    
+                            <ul class="navbar-nav d-flex flex-row">
+                                <li class="nav-item mx-2">
+                                    <a class="nav-link" href="https://twitter.com/creationH1" target="_blank" rel="noopener noreferrer">
+                                        <i class="fab fa-twitter fa-2x rounded rounded-circle bg-main
+                                        p-2"></i>
+                                    </a>
+                                </li>
+                                <li class="nav-item mx-2">
+                                    <a class="nav-link" href="https://www.instagram.com/harutopcp/" target="_blank" rel="noopener noreferrer">
+                                        <i class="fab fa-instagram fa-2x rounded rounded-circle bg-main
+                                        p-2"></i>
+                                    </a>
+                                </li>
+                                <li class="nav-item mx-2">
+                                    <a class="nav-link" href="https://www.facebook.com/ino.haruto.3" target="_blank" rel="noopener noreferrer">
+                                        <i class="fab fa-facebook fa-2x rounded rounded-circle bg-main
+                                        p-2"></i>
+                                    </a>
+                                </li>
+                                <li class="nav-item mx-2">
+                                    <a class="nav-link" href="https://github.com/seohayam" target="_blank" rel="noopener noreferrer">
+                                        <i class="fab fa-github fa-2x rounded rounded-circle bg-main
+                                        p-2"></i>
+                                    </a>
+                                </li>
+                                <li class="nav-item mx-2">
+                                    <a class="nav-link" href="https://www.linkedin.com/in/haruto-ino-87251519b/" target="_blank" rel="noopener noreferrer">
+                                        <i class="fab fa-linkedin fa-2x rounded rounded-circle bg-main
+                                        p-2"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
 
-                <small>&copy;haruto All rights Resved</small>
+                    <small>&copy;haruto All rights Resved</small>
+
+                </div>
 
             </div>
-
-        </div>
+        @endif
     </div>
 
     @yield('js')
